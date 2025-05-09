@@ -1,0 +1,73 @@
+makeCacheMatrix <- function(x = matrix()) {
+  inv <- NULL
+  set <- function(y){
+    x <<- y
+    inv <<- NULL
+  }
+  get <- function() x
+  setInverse <- function(solveMatrix) inv <<- solveMatrix
+  getInverse <- function() inv
+  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
+}
+
+
+
+makeVector <- function(x = numeric()) {
+    m <- NULL  # This will store the cached mean
+
+    set <- function(y) {
+        x <<- y        
+        m <<- NULL      
+    }
+
+    get <- function() x  
+
+    setmean <- function(mean) m <<- mean  
+
+    getmean <- function() m  
+
+    list(set = set, get = get,
+         setmean = setmean,
+         getmean = getmean)
+}
+
+ Assign new value to x in the parent environment
+Clear the cached mean since the data has changed
+Return the current value of x
+Cache the mean
+Retrieve the cached mean (if any)
+
+
+
+
+
+makeCacheMatrix <- function(x = matrix()) {
+  j <- NULL
+  set <- function(y){
+  x <<- y
+  j <<- NULL
+  }
+  get <- function()x
+  setInverse <- function(inverse) j <<- inverse
+  getInverse <- function() j 
+  list(set = set, get = get, 
+  setInverse = setInverse, 
+  getInverse = getInverse)
+}
+
+
+
+Step
+vec <- makeVector(c(5, 15, 25))
+
+cachemean(vec)
+# Output: [1] 15
+
+cachemean(vec)
+# Output:
+# getting cached data
+# [1] 15
+
+makeVector() sets up a structure to hold a vector and cache its mean.
+cachemean() efficiently retrieves the cached mean if available, or calculates and caches it if not
+
